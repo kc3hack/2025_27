@@ -22,7 +22,13 @@
 	<section class="col-6 user-setup text-4xl w-7/10 bg-amber-500">
 		<p class="setup-text">アバターとニックネームを設定してください</p>
 		<input type="text" bind:value={name} placeholder="名前を入力" />
-		<button class="start-button">スタート</button>
+		<!-- スタートボタン -->
+        <button 
+        on:click={() => console.log("")}
+        class="px-6 bg-white text-lg rounded-md hover:bg-gray-200"
+        >
+        スタート
+        </button>
 	</section>
 
 	<section class="col-6 how-to-use text-4xl w-3/10 bg-amber-800">
