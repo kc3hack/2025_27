@@ -17,7 +17,7 @@
 	}
 </script>
 
-<main class="content h-250 container mx-auto bg-amber-300 flex justify-between">
+<main class="content h-250 container mx-auto bg-amber-300 flex justify-between items-center">
 	<!-- アバター、ニックネーム設定 -->
 	<section class="col-6 user-setup text-4xl w-7/10 bg-amber-500">
 		<p class="setup-text">アバターとニックネームを設定してください</p>
