@@ -1,4 +1,4 @@
-name: "canterbury_back"
+name: "wara1_backend"
 
 services:
   rails-app:
