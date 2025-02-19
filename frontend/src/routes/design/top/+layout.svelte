@@ -4,6 +4,7 @@
 	import './layout.css';
 	import '$src/app.css';
 	import Header from '$src/components/Header.svelte';
+	import Footer from '$src/components/Footer.svelte';
 	
 	// ページコンテンツを受け取る
 	let { children } = $props();
@@ -12,9 +13,7 @@
 <ParaglideJS {i18n}>
 	<Header />
 	<div class="main">{@render children()}</div>
-	<footer class="footer w-full">
-		<div class="flex"><p class="text-2xl">WARA1</p></div>
-	</footer>
+	<Footer />
 </ParaglideJS>
 
 <style>
