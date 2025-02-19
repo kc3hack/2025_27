@@ -1,0 +1,26 @@
+name: Deploy Frontend to Netlify
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - frontend/**
+  workflow_dispatch:
+
+jobs:
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: Netlify にデプロイ
+        run: |
+          npm install -g netlify-cli
+          cd frontend
+          npm i && npm run build
+          netlify deploy --prod --dir=build --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
