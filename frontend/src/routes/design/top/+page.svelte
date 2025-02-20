@@ -56,7 +56,7 @@
 						class="cursor-pointer transition-colors duration-300 text-lg font-bold"
 						class:text-white={currentSlide !== index}
 						class:text-yellow-400={currentSlide === index}
-						on:click={() => { currentSlide = index; resetAutoSlide(); }}
+						on:click={() => { currentSlide = index;}}
 					>
 						{currentSlide === index ? "◎" : "●"}
 					</div>
