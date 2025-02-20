@@ -1,20 +1,28 @@
 <script>
+    import { onMount, onDestroy } from "svelte";
+
 	let name = '';
 
-    let currentStep = 0;
+    let currentSlide = 0;
+	const intervalTime = 3000; // 3秒ごとにスライド
 
-	const steps = [
-		"ここに説明01",
-		"ここに説明02",
-		"ここに説明03",
-		"ここに説明04",
-		"ここに説明05",
-		"ここに説明06"
+	const slides = [
+		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "大喜利企画。" },
+		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "テーマに沿った面白い回答を競い合う。" },
+		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "AIや観客が最も面白いと感じた回答に投票。" },
+		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "ポイントが高いほど優勝に近づくシステム。" },
+		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "最後に、最も多くのIPPONを獲得した者が勝者！" }
 	];
 
-	function nextStep() {
-		currentStep = (currentStep + 1) % steps.length;
-	}
+	// 自動スライド開始
+	onMount(() => {
+		const interval = setInterval(() => {
+			currentSlide = (currentSlide + 1) % slides.length;
+		}, intervalTime);
+
+		// コンポーネントが削除されたときに `setInterval` をクリア
+		onDestroy(() => clearInterval(interval));
+	});
 </script>
 
 <main class="content h-250 container mx-auto bg-amber-300 flex justify-between items-center">
@@ -34,21 +42,29 @@
 	<section class="col-6 how-to-use text-4xl w-3/10 bg-amber-800">
 		<!-- 遊び方書く -->
 		<h2>遊び方</h2>
-		<p>ここに説明書く</p>
-        <div class="bg-amber-700 p-4 rounded-md flex flex-col items-center">    
-            <!-- 説明文 -->
+		
+        <!-- 説明文 -->
+        <div class="bg-amber-700 p-4 rounded-md flex flex-col items-center">      
             <p class="text-lg text-white text-center mb-4">
-                {steps[currentStep]}
+                {slides[currentSlide].text}
             </p>
 
-            <!-- 次へボタン -->
-            <button 
-                on:click={nextStep} 
-                class="px-6 bg-white text-lg rounded-md hover:bg-gray-200"
-            >
-                次へ
-            </button>
+            <!-- スライド -->
+            <div class="flex justify-center items-center space-x-2 mt-4">
+				{#each slides as _, index}
+					<div 
+						class="cursor-pointer transition-colors duration-300 text-lg font-bold"
+						class:text-white={currentSlide !== index}
+						class:text-yellow-400={currentSlide === index}
+						on:click={() => { currentSlide = index; resetAutoSlide(); }}
+					>
+						{currentSlide === index ? "◎" : "●"}
+					</div>
+				{/each}
+			</div>
         </div>
+
+        
 	</section>
 </main>
 
