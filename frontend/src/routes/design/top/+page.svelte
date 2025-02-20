@@ -7,7 +7,7 @@
 	const intervalTime = 3000; // 3秒ごとにスライド
 
 	const slides = [
-		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "大喜利企画。" },
+		{ img: "https://ja.pngtree.com/freepng/seagull_213807.html", text: "大喜利企画。" },
 		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "テーマに沿った面白い回答を競い合う。" },
 		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "AIや観客が最も面白いと感じた回答に投票。" },
 		{ img: "https://images.app.goo.gl/HqPgqNxdARMKgBvn8", text: "ポイントが高いほど優勝に近づくシステム。" },
@@ -44,7 +44,16 @@
 		<h2>遊び方</h2>
 		
         <!-- 説明文 -->
-        <div class="bg-amber-700 p-4 rounded-md flex flex-col items-center">      
+        <div class="bg-amber-700 p-4 rounded-md flex flex-col items-center"> 
+            <!-- スライド画像　追加したけど見れない -->
+			<div class="h-48 rounded-md">
+				<img 
+					src={slides[currentSlide].img} 
+					alt="Slide Image" 
+					class="w-full h-full object-cover"
+				/>
+			</div>
+
             <p class="text-lg text-white text-center mb-4">
                 {slides[currentSlide].text}
             </p>
