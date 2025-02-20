@@ -45,7 +45,7 @@
 		
         <!-- 説明文 -->
         <div class="bg-amber-700 p-4 rounded-md flex flex-col items-center"> 
-            <!-- スライド画像　追加したけど見れない -->
+            <!-- スライド画像 -->
 			<div class="h-48 rounded-md">
 				<img 
 					src={slides[currentSlide].img} 
