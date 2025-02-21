@@ -19,7 +19,11 @@
 
 	function startLobby() {
 		let lobbyId = Math.floor(Math.random() * 1000);
-		goto(`${$page.url.pathname}/${lobbyId}`);
+		if ($page.url.pathname.includes('design')) {
+			goto(`/design/top/${lobbyId}`);
+		} else {
+			goto(`${lobbyId}`);
+		}
 	}
 
 	onMount(() => {
