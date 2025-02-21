@@ -50,7 +50,7 @@
 
 <style>
 	section {
-		--size: 1.75rem;
+		--size: 3.5rem;
 		padding: 0.25rem;
 		display: flex;
 		align-items: center;

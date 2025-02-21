@@ -1,8 +1,8 @@
 <script>
 	import { onMount } from 'svelte'
 	
-	export let width = 300
-	export let height = 300
+	export let width = 900
+	export let height = 500
 	export let color = '#333'
 	export let background = '#fff'
 	

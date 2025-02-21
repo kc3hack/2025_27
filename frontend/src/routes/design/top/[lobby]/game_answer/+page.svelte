@@ -20,9 +20,8 @@
     </section>
 
     <!-- お絵描き部分 -->
-    <section class="p-6 rounded-md flex mt-6 items-center">
+    <section class="p-6 w-full rounded-md flex mt-6 items-center">
         <div class="Drawing section">
-            <h3>お絵描き</h3>
             <Canvas {color} {background} />
             <Palette 
                 {paletteColor}
@@ -33,6 +32,13 @@
                 }}"
             />
         </div>
+    </section>
+
+    <!-- 発表部分 -->
+    <section class= "w-9/10 p-5 flex justify-end">
+        <button class="px-6 py-3 bg-yellow-600 text-white rounded-md text-4xl hover:bg-orange-200">
+            発表する！
+        </button>
     </section>
 </main>
 
