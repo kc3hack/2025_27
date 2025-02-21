@@ -1,7 +1,7 @@
-class LobbyChannel < ApplicationCable::Channel
+class GameChannel < ApplicationCable::Channel
   def subscribed
     lobby_id = params[:room]
-    stream_from "lobby_#{lobby_id}"
+    stream_from "game_#{lobby_id}"
     nickname = params[:nickname]
     select_avatar = params[:select_avatar]
 
@@ -9,7 +9,7 @@ class LobbyChannel < ApplicationCable::Channel
     players = Rails.cache.fetch("players_#{lobby_id}") { [] }
     players << { nickname: nickname, image: select_avatar }
     Rails.cache.write("players_#{lobby_id}", players)
-    Rails.logger.info "✅ Subscribed to lobby_#{lobby_id}"
+    Rails.logger.info "✅ Subscribed to game_#{lobby_id}"
 
     # ルームにいるプレイヤーリストを全員にブロードキャスト
     broadcast_players(lobby_id)
@@ -18,7 +18,6 @@ class LobbyChannel < ApplicationCable::Channel
   def unsubscribed
     lobby_id = params[:room]
     nickname = params[:nickname]
-    select_avatar = params[:select_avatar]
 
     # 購読者リストから削除
     players = Rails.cache.fetch("players_#{lobby_id}") { [] }
@@ -26,19 +25,19 @@ class LobbyChannel < ApplicationCable::Channel
     Rails.cache.write("players_#{lobby_id}", players)
 
     # 更新後のプレイヤーリストを全員にブロードキャスト
-    broadcast_players(lobby_id)
+    broadcast_players(params[:room])
   end
 
   def receive(data)
     lobby_id = params[:room]
 
     if data["type"] == "image" && data["data"].start_with?("data:image/")
-      ActionCable.server.broadcast("lobby_#{lobby_id}", {
+      ActionCable.server.broadcast("game_#{lobby_id}", {
         type: "image",
         data: data["data"]
       })
     elsif data["text"].present?
-      ActionCable.server.broadcast("lobby_#{lobby_id}", {
+      ActionCable.server.broadcast("game_#{lobby_id}", {
         type: "text",
         text: data["text"]
       })
@@ -47,12 +46,13 @@ class LobbyChannel < ApplicationCable::Channel
     end
   end
 
-  def start_game(data)
-    ActionCable.server.broadcast("lobby_#{params[:room]}", {
+  def send_theme(data)
+    lobby_id = params[:room]
+    ActionCable.server.broadcast("game_#{lobby_id}", {
       type: "text",
       data: {
-        command: "start_game",
-        game_master: data["nickname"]
+        command: "set_theme",
+        theme: data["theme"]
       }
     })
   end
@@ -61,7 +61,7 @@ class LobbyChannel < ApplicationCable::Channel
 
   def broadcast_players(lobby)
     players = Rails.cache.fetch("players_#{lobby}") { [] }
-    ActionCable.server.broadcast("lobby_#{lobby}", {
+    ActionCable.server.broadcast("game_#{lobby}", {
       type: "text",
       data: {
         command: "get_players",
