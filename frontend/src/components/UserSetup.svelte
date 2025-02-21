@@ -1,14 +1,11 @@
 <script>
-// @ts-nocheck
-    import { nickname, selectAvatar } from '$lib/stores.js';
+	import { nickname, selectAvatar } from '$lib/stores.js';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-    import { page } from '$app/stores';
-    export let name;
-    export let setName;
+	import { page } from '$app/stores';
 
-    const avatarUrls = [
+	const avatarUrls = [
 		'https://flowbite.com/docs/images/people/profile-picture-1.jpg',
 		'https://flowbite.com/docs/images/people/profile-picture-2.jpg',
 		'https://flowbite.com/docs/images/people/profile-picture-3.jpg',
@@ -34,19 +31,19 @@
 </script>
 
 <div class="flex items-center justify-center gap-4">
-    <img class="h-40 w-40 rounded-full" src={$selectAvatar} alt="" on:click={nextAvatar} />
-    <div class="font-medium dark:text-white">
-        <p class="setup-text">アバターとニックネームを設定してください</p>
-        <input
-            type="text"
-            bind:value={$nickname}
-            placeholder="名前を入力"
-            class="rounded-lg border-2 border-gray-300 p-2"
-        />
-    </div>
+	<img class="h-40 w-40 rounded-full" src={$selectAvatar} alt="" on:click={nextAvatar} />
+	<div class="font-medium dark:text-white">
+		<p class="setup-text">アバターとニックネームを設定してください</p>
+		<input
+			type="text"
+			bind:value={$nickname}
+			placeholder="名前を入力"
+			class="rounded-lg border-2 border-gray-300 p-2"
+		/>
+	</div>
 </div>
 <div class="flex items-center justify-center">
-    <button on:click={startLobby} class="rounded-md bg-white px-6 text-lg hover:bg-gray-200">
-        スタート
-    </button>
+	<button on:click={startLobby} class="rounded-md bg-white px-6 text-lg hover:bg-gray-200">
+		スタート
+	</button>
 </div>
