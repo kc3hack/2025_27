@@ -2,6 +2,7 @@
 	import { nickname, selectAvatar } from '$lib/stores.js';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
 	let currentStep = 0;
 
@@ -30,6 +31,11 @@
 		selectAvatar.set(avatarUrls[(avatarUrls.indexOf($selectAvatar) + 1) % avatarUrls.length]);
 	}
 
+	function startLobby() {
+		let lobbyId = Math.floor(Math.random() * 1000);
+		goto(`${lobbyId}`);
+	}
+
 	onMount(() => {
 		if (browser) {
 			nickname.set(localStorage.getItem('nickname') || '');
@@ -53,10 +59,7 @@
 			</div>
 		</div>
 		<div class="flex items-center justify-center">
-			<button
-				on:click={() => console.log('')}
-				class="rounded-md bg-white px-6 text-lg hover:bg-gray-200"
-			>
+			<button on:click={startLobby} class="rounded-md bg-white px-6 text-lg hover:bg-gray-200">
 				スタート
 			</button>
 		</div>
