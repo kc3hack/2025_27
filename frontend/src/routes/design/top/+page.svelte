@@ -1,5 +1,8 @@
 <script>
+// @ts-nocheck
+
     import { onMount, onDestroy } from "svelte";
+	import UserSetup from "$src/components/UserSetup.svelte";
     import HowToUse from "$src/components/HowToUse.svelte"; // コンポーネントをインポート
 
 	let name = '';
@@ -32,18 +35,15 @@
 </script>
 
 <main class="content h-250 container mx-auto bg-amber-300 flex justify-between items-center">
-	<!-- アバター、ニックネーム設定 -->
-	<section class="col-6 user-setup text-4xl w-7/10 bg-amber-500">
-		<p class="setup-text">アバターとニックネームを設定してください</p>
-		<input type="text" bind:value={name} placeholder="名前を入力" />
-		<!-- スタートボタン -->
-        <button class="px-6 bg-white text-lg rounded-md hover:bg-gray-200">
-            スタート
-        </button>
+	<section class="user-setup w-7/10 bg-amber-500">
+		<!-- アバター、ニックネーム設定 -->
+		<UserSetup {name}/>
 	</section>
-
-    <!-- 遊び方説明-->
-    <HowToUse {slides} {currentSlide} {setCurrentSlide} />
+    
+	<section class="how-to-use text-4xl w-3/10 bg-amber-800">
+		<!-- 遊び方説明-->
+    	<HowToUse {slides} {currentSlide} {setCurrentSlide} />
+	</section>
 </main>
 
 <style>
