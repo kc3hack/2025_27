@@ -35,11 +35,15 @@
 </script>
 
 <main class="content h-250 container mx-auto bg-amber-300 flex justify-between items-center">
-	<!-- アバター、ニックネーム設定 -->
-	<UserSetup {name}/>
-
-    <!-- 遊び方説明-->
-    <HowToUse {slides} {currentSlide} {setCurrentSlide} />
+	<section class="user-setup w-7/10 bg-amber-500">
+		<!-- アバター、ニックネーム設定 -->
+		<UserSetup {name}/>
+	</section>
+    
+	<section class="how-to-use text-4xl w-3/10 bg-amber-800">
+		<!-- 遊び方説明-->
+    	<HowToUse {slides} {currentSlide} {setCurrentSlide} />
+	</section>
 </main>
 
 <style>
