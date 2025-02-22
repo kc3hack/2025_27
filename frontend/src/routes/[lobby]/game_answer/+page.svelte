@@ -12,8 +12,33 @@
 	let players = [];
 	let theme = '';
 
+	let canvas;
+	let ctx;
+	let drawing = false;
+
+	function startDrawing(event) {
+		drawing = true;
+		ctx.beginPath();
+		ctx.moveTo(event.offsetX, event.offsetY);
+	}
+
+	function draw(event) {
+		if (!drawing) return;
+		ctx.lineTo(event.offsetX, event.offsetY);
+		ctx.stroke();
+	}
+
+	function stopDrawing() {
+		drawing = false;
+		ctx.closePath();
+	}
+
 	onMount(async () => {
 		if (browser) {
+			ctx = canvas.getContext('2d');
+			ctx.lineWidth = 5;
+			ctx.lineCap = 'round';
+
 			// @todo localstorageに値がなければトップにリダイレクト
 			nickname = localStorage.getItem('nickname') || '';
 			selectAvatar = localStorage.getItem('selectAvatar') || '';
@@ -50,3 +75,22 @@
 <h1>Game Answer</h1>
 
 <h1>{theme}</h1>
+
+<canvas
+	bind:this={canvas}
+	width={800}
+	height={600}
+	on:mousedown={startDrawing}
+	on:mousemove={draw}
+	on:mouseup={stopDrawing}
+	on:mouseleave={stopDrawing}
+	class="border"
+>
+</canvas>
+
+<style>
+	canvas {
+		border: 1px solid #000;
+		cursor: crosshair;
+	}
+</style>

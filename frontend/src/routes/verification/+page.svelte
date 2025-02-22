@@ -2,8 +2,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
-	const VOICEVOX_URL =
-		import.meta.env.VITE_VOICEVOX_URL || 'https://voicevox-752169768124.asia-northeast2.run.app';
+	const VOICEVOX_URL = import.meta.env.VITE_VOICEVOX_URL || 'https://wara1-voicevox.tunn.dev';
 
 	let text = '';
 	let audio = null;
