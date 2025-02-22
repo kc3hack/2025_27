@@ -69,12 +69,6 @@
 					if (message.data.command === 'get_players') {
 						console.log('message.data.players:', message.data.players);
 						players = [...message.data.players];
-					} else if (message.data.command === 'receive_image') {
-						console.log('aaaaa');
-						// 他プレイヤーから受信した画像を表示
-						const img = new Image();
-						img.src = message.data.image;
-						img.onload = () => ctx.drawImage(img, 0, 0);
 					} else if (message.data.command === 'set_theme') {
 						console.log('set_theme: ', message.data.theme);
 						theme = message.data.theme;
