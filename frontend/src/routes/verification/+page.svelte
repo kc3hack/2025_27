@@ -1,14 +1,18 @@
 <script>
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+
+	const VOICEVOX_URL =
+		import.meta.env.VITE_VOICEVOX_URL || 'https://voicevox-752169768124.asia-northeast2.run.app';
+
 	let text = '';
-	let audio = new Audio();
-	const voiceboxUrl = 'http://localhost:50021';
+	let audio = null;
 
 	async function generateSpeech() {
 		if (!text) return;
 
 		const response = await fetch(
-			`${voiceboxUrl}/audio_query?text=${encodeURIComponent(text)}&speaker=1`,
+			`${VOICEVOX_URL}/audio_query?text=${encodeURIComponent(text)}&speaker=1`,
 			{
 				method: 'POST'
 			}
@@ -20,7 +24,7 @@
 		}
 
 		const queryData = await response.json();
-		const synthesisResponse = await fetch(`${voiceboxUrl}/synthesis?speaker=1`, {
+		const synthesisResponse = await fetch(`${VOICEVOX_URL}/synthesis?speaker=1`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(queryData)
@@ -35,6 +39,12 @@
 		audio.src = URL.createObjectURL(blob);
 		audio.play();
 	}
+
+	onMount(async () => {
+		if (browser) {
+			audio = new Audio();
+		}
+	});
 </script>
 
 <main>
