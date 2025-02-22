@@ -13,44 +13,35 @@
 	let color = colors[0]
 	const paletteColor = color
 </script>
-<main class="content h-250 container mx-auto flex flex-col items-center justify-between bg-amber-300">
+<main class="content h-250 container mx-auto flex flex-col bg-amber-300">
     <!-- お題表示の部分 -->
-    <section class= "w-full bg-yellow-500 p-10 text-5xl rounded-md text-center text-black">
+    <section class= "w-full bg-yellow-500 p-15 text-5xl rounded-md text-center text-black">
         お題:ボウリングで全ての投球がガターだった時、起こることは？
     </section>
 
-    <!-- お絵描き部分 -->
-    <section class="p-6 w-full rounded-md flex mt-6 items-center">
-        <div class="Drawing section">
-            <Canvas {color} {background} />
-            <Palette 
-                {paletteColor}
-                {colors}
-                {background}
-                on:color="{({ detail }) => {
-                    color = detail.color;
-                }}"
-            />
-        </div>
-    </section>
+    <div class="w-full flex justify-between items-center mt-1">
+        <!-- お絵描き部分 -->
+        <section class="p-3 rounded-md flex mt-1 items-center ">
+            <div class="Drawing section">
+                <Canvas {color} {background} />
+                <Palette 
+                    {paletteColor}
+                    {colors}
+                    {background}
+                    on:color="{({ detail }) => {
+                        color = detail.color;
+                    }}"
+                />
+            </div>
+        </section>
 
-    
-     <!-- 四角の枠 要修正-->
-    <section class="p-5 rounded-md flex flex-col items-end ml-auto">
-        <div class="grid grid-cols-2 gap-2 ">
-            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
-            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
-            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
-            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
-        </div>
-    </section>
-
-    <!-- 発表部分 -->
-    <section class= "w-9/10 p-5 flex justify-end">
-        <button class="px-6 py-3 bg-yellow-600 text-white rounded-md text-4xl hover:bg-orange-200">
-            発表する！
-        </button>
-    </section>
+        <!-- 発表部分 -->
+        <section class= "w-9/10 p-5 flex justify-end fixed bottom-20 left-1">
+            <button class="px-10 py-3 bg-yellow-600 text-white rounded-md text-4xl hover:bg-orange-200">
+                発表する！
+            </button>
+        </section>
+    </div>
 </main>
 
 
