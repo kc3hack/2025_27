@@ -34,6 +34,17 @@
         </div>
     </section>
 
+    
+     <!-- 四角の枠 要修正-->
+    <section class="p-5 rounded-md flex flex-col items-end ml-auto">
+        <div class="grid grid-cols-2 gap-2 ">
+            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
+            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
+            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
+            <div class="w-65 h-65 bg-yellow-300 rounded-md"></div>
+        </div>
+    </section>
+
     <!-- 発表部分 -->
     <section class= "w-9/10 p-5 flex justify-end">
         <button class="px-6 py-3 bg-yellow-600 text-white rounded-md text-4xl hover:bg-orange-200">
