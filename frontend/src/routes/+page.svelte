@@ -2,7 +2,24 @@
 	import UserSetup from '$src/components/UserSetup.svelte';
 	import HowToUse from '$src/components/HowToUse.svelte';
 	import Header from '$src/components/Header.svelte';
+
+
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	let topAudio;
+
+	if (browser) {
+		topAudio = new Audio('/top_music.mp3');
+	}
+	onMount(async () => {
+		if (browser) {
+			setTimeout(() => {
+				topAudio.play();
+			}, 1000);
+		}
+	});
 </script>
+
 <Header />
 <main class="content container mx-auto flex h-screen items-center justify-between">
 	<section class="user-setup w-6/10 h-full" style="background-color: rgba(255, 165, 0, 0.5);">
