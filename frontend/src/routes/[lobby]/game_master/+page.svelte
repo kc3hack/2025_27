@@ -106,7 +106,7 @@
 		></textarea>
 	{:else}
 		<div class="flex justify-center">
-			<img src={img.src} width={800} height={600} class="border" />
+			<img src={img.src} width={800} height={600} class="border bg-white" />
 		</div>
 	{/if}
 </div>
