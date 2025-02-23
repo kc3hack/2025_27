@@ -6,7 +6,7 @@
 	import { goto } from '$app/navigation';
 	import Palette from '$src/components/Palette.svelte';
 
-	const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'wss://wara1-backend.onrender.com';
+	const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://wara1-backend.onrender.com/';
 
 	let socket;
 	let lobbyId = '';
