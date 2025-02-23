@@ -156,15 +156,15 @@
 </script>
 
 <section>
-	<div class="mx-10 mt-10 h-60 bg-blue-800 py-10">
-		<div class="mx-10 h-full bg-purple-400">
+	<div class="mx-10 mt-10 h-60 bg-yellow-200 py-10">
+		<div class="mx-10 h-full bg-yellow-400">
 			<textarea class="mx-auto block h-full text-center text-4xl" disabled>{theme}</textarea>
 		</div>
 	</div>
 </section>
 
-<section class="mx-10 mt-10 bg-yellow-500 py-10">
-	<div class="h-150 mx-10 flex px-10 py-10">
+<section class="mx-10 mt-10 bg-yellow-500 py-1">
+	<div class="h-150 mx-1 flex px-10 py-10">
 		<div class="canvas mr-4 h-full flex-1 bg-white">
 			<canvas
 				bind:this={canvas}
@@ -182,18 +182,18 @@
 
 		<div class="menu w-3/10 flex h-full flex-col bg-red-100">
 			<Palette on:color={updateColor} />
-			<button on:click={undo} class="mt-2 bg-blue-500 px-5 py-1 text-white hover:bg-blue-700"
+			<button on:click={undo} class="mt-2 bg-blue-500 text-2xl px-5 py-3 text-white hover:bg-blue-700"
 				>一つ前に戻る</button
 			>
 			<button
 				on:click={clearCanvas}
-				class="mt-2 bg-gray-500 px-5 py-1 text-white hover:bg-gray-700"
+				class="mt-2 bg-gray-500 text-2xl px-5 py-3 text-white hover:bg-gray-700"
 			>
 				クリア
 			</button>
 			<button
 				on:click={sendImageToServer}
-				class="mx-auto mt-auto block h-10 w-full bg-red-500 text-white hover:bg-red-700"
+				class="mx-auto mt-auto block h-10 w-full bg-red-500 text-2xl text-white hover:bg-red-700"
 				disabled={isAnswering}>発表する</button
 			>
 		</div>
