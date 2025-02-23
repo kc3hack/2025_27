@@ -32,6 +32,7 @@
 	}
 
 	function sendEvaluate(evaluate) {
+		console.log('sendEvaluate: ', evaluate);
 		socket.send(
 			JSON.stringify({
 				command: 'message',
