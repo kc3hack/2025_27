@@ -6,6 +6,8 @@
 	import { goto } from '$app/navigation';
 	import Palette from '$src/components/Palette.svelte';
 
+	const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'wss://wara1-backend.onrender.com';
+
 	let socket;
 	let lobbyId = '';
 	let nickname = '';
@@ -63,7 +65,7 @@
 		const imageData = canvas.toDataURL('image/png');
 		const payload = { image: imageData, lobby_id: lobbyId };
 
-		const response = await fetch('http://localhost:3000/game_answer', {
+		const response = await fetch(`${BACKEND_URL}/game_answer`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(payload)
