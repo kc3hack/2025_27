@@ -70,6 +70,7 @@
 		gap: 0 0.5rem;
 		align-items: center;
 		overflow-x: auto;
+		flex-direction: column;
 	}
 	
 	div::-webkit-scrollbar {

@@ -80,38 +80,28 @@
 </script>
 
 <svelte:window on:resize={handleSize} />
-<div>
-	<canvas
-		{width}
-		{height}
-		style:background
-		bind:this={canvas} 
-		on:mousedown={handleStart}	
-		on:touchstart={e => {
-			const { clientX, clientY } = e.touches[0]
-			handleStart({
-				offsetX: clientX - l,
-				offsetY: clientY - t
-			})
-		}}	
-		on:mouseup={handleEnd}				
-		on:touchend={handleEnd}				
-		on:mouseleave={handleEnd}
-		on:mousemove={handleMove}
-		on:touchmove={e => {
-			const { clientX, clientY } = e.touches[0]
-			handleMove({
-				offsetX: clientX - l,
-				offsetY: clientY - t
-			})
-		}}
-		>
-	</canvas> 
-
-	<!-- Undoボタン追加 -->
-	<div class="flex justify-center mt-2">
-		<button on:click={undo} class="px-5 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-700">
-			一つ前に戻る
-		</button>
-	</div>
-</div>
+<canvas
+	class="w-full h-full"
+	style:background
+	bind:this={canvas} 
+	on:mousedown={handleStart}	
+	on:touchstart={e => {
+		const { clientX, clientY } = e.touches[0]
+		handleStart({
+			offsetX: clientX - l,
+			offsetY: clientY - t
+		})
+	}}	
+	on:mouseup={handleEnd}				
+	on:touchend={handleEnd}				
+	on:mouseleave={handleEnd}
+	on:mousemove={handleMove}
+	on:touchmove={e => {
+		const { clientX, clientY } = e.touches[0]
+		handleMove({
+			offsetX: clientX - l,
+			offsetY: clientY - t
+		})
+	}}
+	>
+</canvas> 

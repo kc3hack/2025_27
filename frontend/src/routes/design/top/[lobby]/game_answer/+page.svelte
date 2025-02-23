@@ -19,29 +19,30 @@
         お題:ボウリングで全ての投球がガターだった時、起こることは？
     </section>
 
-    <div class="w-full flex justify-between items-center mt-1">
-        <!-- お絵描き部分 -->
-        <section class="p-3 rounded-md flex mt-1 items-center ">
-            <div class="Drawing section">
-                <Canvas {color} {background} />
-                <Palette 
-                    {paletteColor}
-                    {colors}
-                    {background}
-                    on:color="{({ detail }) => {
-                        color = detail.color;
-                    }}"
-                />
+    
+    <!-- お絵描き部分 -->
+        <div class="Drawing section w-1/2 bg-amber-600">
+            <Canvas {color} {background} />
+            <div class="palette w-1/2 bg-amber-500">
+            <Palette 
+                {paletteColor}
+                {colors}
+                {background}
+                on:color="{({ detail }) => {
+                    color = detail.color;
+                }}"
+            />
             </div>
-        </section>
+        </div>
 
-        <!-- 発表部分 -->
-        <section class= "w-9/10 p-5 flex justify-end fixed bottom-20 left-1">
-            <button class="px-10 py-3 bg-yellow-600 text-white rounded-md text-4xl hover:bg-orange-200">
-                発表する！
-            </button>
-        </section>
+    <!-- 発表部分 -->
+    <div class= "bg-amber-200 p-5 flex justify-end fixed bottom-20 right-1">
+        <button class="px-10 py-3 bg-yellow-600 text-white rounded-md text-4xl hover:bg-orange-200">
+            発表する！
+        </button>
     </div>
+    
+
 </main>
 
 
