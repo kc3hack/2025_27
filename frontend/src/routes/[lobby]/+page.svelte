@@ -25,6 +25,18 @@
 		);
 	}
 
+	function inviteLink() {
+		const url = `${$page.url.origin}?roomId=${lobbyId}`;
+		navigator.clipboard
+			.writeText(url)
+			.then(() => {
+				alert('コピーしました: ' + url);
+			})
+			.catch((err) => {
+				console.error('コピーに失敗しました', err);
+			});
+	}
+
 	onMount(async () => {
 		if (browser) {
 			// @todo localstorageに値がなければトップにリダイレクト
@@ -69,3 +81,4 @@
 <p>selectAvata: {selectAvatar}</p>
 
 <button on:click={startGame}>start_game</button>
+<button on:click={inviteLink}>invite link</button>

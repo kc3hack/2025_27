@@ -18,7 +18,10 @@
 	}
 
 	function startLobby() {
-		let lobbyId = Math.floor(Math.random() * 1000);
+		const urlParams = new URLSearchParams(window.location.search);
+		const roomId = urlParams.get('roomId');
+		let lobbyId = roomId || Math.floor(Math.random() * 1000);
+
 		if ($page.url.pathname.includes('design')) {
 			goto(`/design/top/${lobbyId}`);
 		} else {
