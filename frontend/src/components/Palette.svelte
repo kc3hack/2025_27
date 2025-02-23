@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 
-	let colors = ['#d58141', '#d7c44c', '#4fa9cc', '#3f8d27', '#000', '#fff'];
+	let colors = ['#ff0000', '#eaff00', '#001eff', '#00ff40', '#000', '#fff'];
 	let paletteColor = colors[0];
 </script>
 
@@ -27,8 +27,8 @@
 	}
 
 	.color-button {
-		width: 40px;
-		height: 40px;
+		width: 50px;
+		height: 50px;
 		border: none;
 		cursor: pointer;
 		border-radius: 50%;
