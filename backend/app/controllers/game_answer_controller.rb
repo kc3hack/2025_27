@@ -6,6 +6,13 @@ class GameAnswerController < ApplicationController
     ActionCable.server.broadcast("game_#{lobby_id}", {
       type: "text",
       data: {
+        command: "answering"
+      }
+    })
+
+    ActionCable.server.broadcast("game_#{lobby_id}", {
+      type: "text",
+      data: {
         command: "receive_image",
         image: image_data
       }

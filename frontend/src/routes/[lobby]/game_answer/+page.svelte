@@ -15,6 +15,7 @@
 	let players = [];
 	let theme = '';
 	let selectedColor = '#000';
+	let isAnswering = false;
 
 	let canvas;
 	let ctx;
@@ -105,12 +106,18 @@
 					} else if (message.data.command === 'set_theme') {
 						console.log('set_theme: ', message.data.theme);
 						theme = message.data.theme;
+					} else if (message.data.command === 'answering') {
+						console.log('answering');
+						isAnswering = true;
+					} else if (message.data.command === 'continue_game') {
+						console.log('continue_game');
+						isAnswering = false;
 					} else if (message.data.command === 'end_game') {
 						console.log('end_game');
 						if ($page.url.pathname.includes('design')) {
 							goto(`/design/top/${lobbyId}/result`);
 						} else {
-							goto(`${lobbyId}/result`);
+							goto(`./result`);
 						}
 					}
 				}
@@ -146,9 +153,11 @@
 			<button on:click={undo} class="mt-2 bg-blue-500 px-5 py-1 text-white hover:bg-blue-700"
 				>一つ前に戻る</button
 			>
-			<div class="happyou mt-auto flex h-10 w-full bg-red-500 hover:bg-red-700">
-				<button on:click={sendImageToServer} class="mx-auto block text-white">発表する</button>
-			</div>
+			<button
+				on:click={sendImageToServer}
+				class="mx-auto mt-auto block h-10 w-full bg-red-500 text-white hover:bg-red-700"
+				disabled={isAnswering}>発表する</button
+			>
 		</div>
 	</div>
 </section>
@@ -160,5 +169,11 @@
 		width: 100%;
 		height: 100%;
 		display: block;
+	}
+
+	button[disabled],
+	.happyou[disabled] {
+		background-color: gray;
+		cursor: not-allowed;
 	}
 </style>

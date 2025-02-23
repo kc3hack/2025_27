@@ -32,19 +32,18 @@
 	}
 
 	function sendEvaluate(evaluate) {
-		console.log(evaluate);
-		// socket.send(
-		// 	JSON.stringify({
-		// 		command: 'message',
-		// 		identifier: JSON.stringify({
-		// 			channel: 'GameChannel',
-		// 			room: lobbyId,
-		// 			nickname: localStorage.getItem('nickname'),
-		// 			select_avatar: localStorage.getItem('selectAvatar')
-		// 		}),
-		// 		data: JSON.stringify({ action: 'send_evaluate', evaluate: evaluate })
-		// 	})
-		// );
+		socket.send(
+			JSON.stringify({
+				command: 'message',
+				identifier: JSON.stringify({
+					channel: 'GameChannel',
+					room: lobbyId,
+					nickname: localStorage.getItem('nickname'),
+					select_avatar: localStorage.getItem('selectAvatar')
+				}),
+				data: JSON.stringify({ action: 'send_evaluate', evaluate: evaluate })
+			})
+		);
 	}
 
 	onMount(async () => {
@@ -87,7 +86,7 @@
 						if ($page.url.pathname.includes('design')) {
 							goto(`/design/top/${lobbyId}/result`);
 						} else {
-							goto(`${lobbyId}/result`);
+							goto(`./result`);
 						}
 					}
 				}

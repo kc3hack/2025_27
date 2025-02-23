@@ -57,6 +57,25 @@ class GameChannel < ApplicationCable::Channel
     })
   end
 
+  def send_evaluate(data)
+    lobby_id = params[:room]
+    if data["evaluate"]
+      ActionCable.server.broadcast("game_#{lobby_id}", {
+        type: "text",
+        data: {
+          command: "end_game"
+        }
+      })
+    else
+      ActionCable.server.broadcast("game_#{lobby_id}", {
+        type: "text",
+        data: {
+          command: "continue_game"
+        }
+      })
+    end
+  end
+
   private
 
   def broadcast_players(lobby)
