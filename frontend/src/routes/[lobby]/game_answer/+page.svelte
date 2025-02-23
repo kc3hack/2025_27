@@ -17,6 +17,7 @@
 	let canvas;
 	let ctx;
 	let drawing = false;
+	let history = [];
 
 	function resizeCanvas() {
 		canvas.width = canvas.clientWidth;
@@ -28,6 +29,7 @@
 		ctx.strokeStyle = selectedColor;
 		ctx.beginPath();
 		ctx.moveTo(event.offsetX, event.offsetY);
+		saveState();
 	}
 
 	function draw(event) {
@@ -39,6 +41,22 @@
 	function stopDrawing() {
 		drawing = false;
 		ctx.closePath();
+	}
+
+	function saveState() {
+		history.push(canvas.toDataURL());
+	}
+
+	function undo() {
+		if (history.length > 0) {
+			const lastState = history.pop();
+			const img = new Image();
+			img.src = lastState;
+			img.onload = () => {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(img, 0, 0);
+			};
+		}
 	}
 
 	async function sendImageToServer() {
@@ -123,8 +141,10 @@
 
 		<div class="menu w-3/10 flex h-full flex-col bg-red-100">
 			<Palette on:color={updateColor} />
-
-			<div class="happyou mt-auto flex h-10 w-full bg-red-500">
+			<button on:click={undo} class="mt-2 bg-blue-500 px-5 py-1 text-white hover:bg-blue-700"
+				>一つ前に戻る</button
+			>
+			<div class="happyou mt-auto flex h-10 w-full bg-red-500 hover:bg-red-700">
 				<button on:click={sendImageToServer} class="mx-auto block text-white">発表する</button>
 			</div>
 		</div>
