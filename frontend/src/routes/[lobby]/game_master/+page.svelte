@@ -194,18 +194,18 @@
 	});
 </script>
 
-<section class="theme-box">
+<section class="theme-box md:h-150 h-200">
 	<div class="mx-10 mt-10 h-fit bg-blue-100 py-10">
 		{#if mode === 'theme'}
 			<textarea
-				class="theme-box h-50 w-full bg-blue-500 text-center text-7xl"
+				class="theme-box h-100 w-full bg-blue-500 text-center text-7xl"
 				placeholder="お題を入力"
 				bind:value={theme}
 				on:input={sendTheme}
 			></textarea>
 		{:else}
 			<div class="flex justify-center">
-				<img src={img.src} width={800} height={600} class="border bg-white" />
+				<img src={img.src} class="h-100 w-full border bg-white" />
 			</div>
 		{/if}
 		{#if showBoxes}
@@ -229,16 +229,10 @@
 	</div>
 </section>
 
-<section class="mx-10 mt-10 bg-blue-200 py-10">
-	<div class="h-100 mx-10 bg-blue-300 px-10 py-10">
-		<div class="user-display h-7/10 flex bg-blue-500">
-			<div class="user1 mx-3 h-full w-1/3 bg-amber-500"></div>
-			<div class="user2 h-full w-1/3 bg-amber-800"></div>
-			<div class="user3 mx-3 h-full w-1/3 bg-amber-500"></div>
-		</div>
-
-		<div class="hyouka h-3/10 bg-blue-600">
-			<div class="flex justify-end bg-amber-200 py-3 text-white">
+<section class="mx-10 bg-blue-200 py-10">
+	<div class="mx-10 bg-blue-300 px-10">
+		<div class="hyouka bg-blue-600">
+			<div class="flex h-40 justify-end bg-amber-200 py-3 text-black">
 				<textarea
 					class="heme-box mx-4 w-full text-2xl"
 					placeholder="お題を入力"
@@ -246,13 +240,13 @@
 					disabled
 				></textarea>
 				<button
-					class="btn mr-3 rounded bg-gray-500 px-4 py-2 text-2xl text-white hover:bg-gray-700"
+					class="btn mr-3 w-40 rounded bg-gray-500 px-4 py-2 text-2xl text-white hover:bg-gray-700"
 					on:click={() => sendEvaluate(false)}
 				>
 					残念!
 				</button>
 				<button
-					class="btn mr-3 rounded bg-yellow-500 px-4 py-2 text-2xl text-white hover:bg-yellow-700"
+					class="btn mr-3 w-40 rounded bg-yellow-500 px-4 py-2 text-2xl text-white hover:bg-yellow-700"
 					on:click={() => sendEvaluate(true)}
 				>
 					おもろい!
