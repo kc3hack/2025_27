@@ -4,7 +4,6 @@
 	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 	import '$src/app.css';
 	import Header from '$src/components/Header.svelte';
-	import Footer from '$src/components/Footer.svelte';
 
 	// ページコンテンツを受け取る
 	let { children } = $props();
@@ -16,7 +15,6 @@
 	{:else}
 		<Header />
 		<div class="main">{@render children()}</div>
-		<Footer />
 	{/if}
 </ParaglideJS>
 
