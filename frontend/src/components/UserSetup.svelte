@@ -37,20 +37,20 @@
 	});
 </script>
 
-<div class="flex items-center justify-center gap-4">
-	<img class="h-40 w-40 rounded-full" src={$selectAvatar} alt="" on:click={nextAvatar} />
-	<div class="font-medium dark:text-white">
-		<p class="setup-text">アバターとニックネームを設定してください</p>
+<div class="h-120 flex items-center justify-center gap-4">
+	<img class="h-60 w-60 rounded-full" src={$selectAvatar} alt="" on:click={nextAvatar} />
+	<div class="font-medium dark:text-black">
+		<p class="setup-text text-3xl">アバターとニックネームを設定してください</p>
 		<input
 			type="text"
 			bind:value={$nickname}
 			placeholder="名前を入力"
-			class="rounded-lg border-2 border-gray-300 p-2"
+			class="rounded-lg border-2 text-2xl border-gray-300 p-2"
 		/>
 	</div>
 </div>
 <div class="flex items-center justify-center">
-	<button on:click={startLobby} class="rounded-md bg-white px-6 text-lg hover:bg-gray-200">
+	<button on:click={startLobby} class="rounded-md bg-white text-4xl px-6 hover:bg-gray-200">
 		スタート
 	</button>
 </div>

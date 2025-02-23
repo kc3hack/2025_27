@@ -26,6 +26,10 @@
 		canvas.width = canvas.clientWidth;
 		canvas.height = canvas.clientHeight;
 	}
+	function clearCanvas() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		history = [];
+	}
 
 	function getEventCoordinates(event) {
 		if (event.touches) {
@@ -147,13 +151,13 @@
 <section>
 	<div class="mx-10 mt-10 h-60 bg-blue-800 py-10">
 		<div class="mx-10 h-full bg-purple-400">
-			<textarea class="mx-auto block h-full text-center text-5xl" disabled>{theme}</textarea>
+			<textarea class="mx-auto block h-full text-center text-4xl" disabled>{theme}</textarea>
 		</div>
 	</div>
 </section>
 
 <section class="mx-10 mt-10 bg-yellow-500 py-10">
-	<div class="h-120 mx-10 flex px-10 py-10">
+	<div class="h-150 mx-10 flex px-10 py-10">
 		<div class="canvas mr-4 h-full flex-1 bg-white">
 			<canvas
 				bind:this={canvas}
@@ -174,6 +178,12 @@
 			<button on:click={undo} class="mt-2 bg-blue-500 px-5 py-1 text-white hover:bg-blue-700"
 				>一つ前に戻る</button
 			>
+			<button
+				on:click={clearCanvas}
+				class="mt-2 bg-gray-500 px-5 py-1 text-white hover:bg-gray-700"
+			>
+				クリア
+			</button>
 			<button
 				on:click={sendImageToServer}
 				class="mx-auto mt-auto block h-10 w-full bg-red-500 text-white hover:bg-red-700"
