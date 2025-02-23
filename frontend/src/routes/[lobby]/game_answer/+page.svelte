@@ -27,21 +27,38 @@
 		canvas.height = canvas.clientHeight;
 	}
 
+	function getEventCoordinates(event) {
+		if (event.touches) {
+			return {
+				x: event.touches[0].clientX - canvas.getBoundingClientRect().left,
+				y: event.touches[0].clientY - canvas.getBoundingClientRect().top
+			};
+		}
+		return {
+			x: event.offsetX,
+			y: event.offsetY
+		};
+	}
+
 	function startDrawing(event) {
+		event.preventDefault();
 		drawing = true;
 		ctx.strokeStyle = selectedColor;
 		ctx.beginPath();
-		ctx.moveTo(event.offsetX, event.offsetY);
+		const { x, y } = getEventCoordinates(event);
+		ctx.moveTo(x, y);
 		saveState();
 	}
 
 	function draw(event) {
+		event.preventDefault();
 		if (!drawing) return;
 		ctx.lineTo(event.offsetX, event.offsetY);
 		ctx.stroke();
 	}
 
 	function stopDrawing() {
+		event.preventDefault();
 		drawing = false;
 		ctx.closePath();
 	}
