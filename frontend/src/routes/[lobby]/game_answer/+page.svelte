@@ -53,11 +53,12 @@
 	function draw(event) {
 		event.preventDefault();
 		if (!drawing) return;
-		ctx.lineTo(event.offsetX, event.offsetY);
+		const { x, y } = getEventCoordinates(event);
+		ctx.lineTo(x, y);
 		ctx.stroke();
 	}
 
-	function stopDrawing() {
+	function stopDrawing(event) {
 		event.preventDefault();
 		drawing = false;
 		ctx.closePath();
@@ -105,6 +106,8 @@
 			ctx.lineCap = 'round';
 
 			window.addEventListener('resize', resizeCanvas);
+			document.body.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
+			document.body.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 
 			nickname = localStorage.getItem('nickname') || '';
 			selectAvatar = localStorage.getItem('selectAvatar') || '';
