@@ -10,12 +10,7 @@
 </script>
 
 <ParaglideJS {i18n}>
-	{#if $page.url.pathname.includes('game_answer') || $page.url.pathname.includes('game_master') || $page.url.pathname.includes('result')}
 		<div class="main">{@render children()}</div>
-	{:else}
-		
-		<div class="main">{@render children()}</div>
-	{/if}
 </ParaglideJS>
 
 <style>

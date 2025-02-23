@@ -4,6 +4,7 @@
 	let sponcerAudio;
 	let answerSelectAvatar = localStorage.getItem('answerSelectAvatar') || '';
 	let answerNickname = localStorage.getItem('answerNickname') || '';
+	let audienceAudio;
 
 	if (browser) {
 		sponcerAudio = new Audio('/sponcer.wav');
@@ -13,6 +14,18 @@
 			setTimeout(() => {
 				sponcerAudio.play();
 			}, 5000);
+		}
+	});
+
+	if (browser) {
+		audienceAudio = new Audio('/audience_sound.mp3');
+		audienceAudio.volume = 0.2;
+	}
+	onMount(async () => {
+		if (browser) {
+			setTimeout(() => {
+				audienceAudio.play();
+			}, 0);
 		}
 	});
 </script>
