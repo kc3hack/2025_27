@@ -2,8 +2,6 @@
 	import UserSetup from '$src/components/UserSetup.svelte';
 	import HowToUse from '$src/components/HowToUse.svelte';
 	import Header from '$src/components/Header.svelte';
-
-
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	let topAudio;
