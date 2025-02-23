@@ -1,1 +1,4 @@
 .DS_Store
+voicevox/*
+!voicevox/docker-compose.yml
+!voicevox/Dockerfile

@@ -1,1 +1,8 @@
 @import 'tailwindcss';
+
+body {
+    background-image: url('/images/top_background.png'); /* 画像のパスを指定 */
+    background-size: cover; /* 画面全体にカバー */
+    background-position: center; /* 中央配置 */
+    background-repeat: no-repeat; /* 繰り返しなし */
+}
