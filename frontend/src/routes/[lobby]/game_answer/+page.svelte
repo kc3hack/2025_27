@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 	import { connectWebSocket } from '$lib/chat.js';
 	import { goto } from '$app/navigation';
+	import Palette from '$src/components/Palette.svelte';
 
 	let socket;
 	let lobbyId = '';
@@ -11,13 +12,20 @@
 	let selectAvatar = '';
 	let players = [];
 	let theme = '';
+	let selectedColor = '#000';
 
 	let canvas;
 	let ctx;
 	let drawing = false;
 
+	function resizeCanvas() {
+		canvas.width = canvas.clientWidth;
+		canvas.height = canvas.clientHeight;
+	}
+
 	function startDrawing(event) {
 		drawing = true;
+		ctx.strokeStyle = selectedColor;
 		ctx.beginPath();
 		ctx.moveTo(event.offsetX, event.offsetY);
 	}
@@ -34,7 +42,7 @@
 	}
 
 	async function sendImageToServer() {
-		const imageData = canvas.toDataURL('image/png'); // Base64 エンコード
+		const imageData = canvas.toDataURL('image/png');
 		const payload = { image: imageData, lobby_id: lobbyId };
 
 		const response = await fetch('http://localhost:3000/game_answer', {
@@ -47,13 +55,19 @@
 		console.log('Server Response:', data);
 	}
 
+	function updateColor(event) {
+		selectedColor = event.detail.color;
+	}
+
 	onMount(async () => {
 		if (browser) {
 			ctx = canvas.getContext('2d');
-			ctx.lineWidth = 5;
+			resizeCanvas();
+			ctx.lineWidth = 3;
 			ctx.lineCap = 'round';
 
-			// @todo localstorageに値がなければトップにリダイレクト
+			window.addEventListener('resize', resizeCanvas);
+
 			nickname = localStorage.getItem('nickname') || '';
 			selectAvatar = localStorage.getItem('selectAvatar') || '';
 			const user = {
@@ -62,7 +76,6 @@
 			};
 			lobbyId = $page.params.lobby;
 
-			// WebSocket 接続
 			socket = connectWebSocket('GameChannel', lobbyId, user, (message) => {
 				console.log('message: ', message);
 				if (message.type === 'text') {
@@ -86,27 +99,44 @@
 	});
 </script>
 
-<h1>Game Answer</h1>
+<section>
+	<div class="mx-10 mt-10 h-60 bg-blue-800 py-10">
+		<div class="mx-10 h-full bg-purple-400">
+			<textarea class="mx-auto block h-full text-center text-5xl" disabled>{theme}</textarea>
+		</div>
+	</div>
+</section>
 
-<h1>{theme}</h1>
+<section class="mx-10 mt-10 bg-yellow-500 py-10">
+	<div class="h-120 mx-10 flex px-10 py-10">
+		<div class="canvas mr-4 h-full flex-1 bg-white">
+			<canvas
+				bind:this={canvas}
+				on:mousedown={startDrawing}
+				on:mousemove={draw}
+				on:mouseup={stopDrawing}
+				on:mouseleave={stopDrawing}
+				class="h-full w-full border"
+			>
+			</canvas>
+		</div>
 
-<canvas
-	bind:this={canvas}
-	width={800}
-	height={600}
-	on:mousedown={startDrawing}
-	on:mousemove={draw}
-	on:mouseup={stopDrawing}
-	on:mouseleave={stopDrawing}
-	class="border"
->
-</canvas>
+		<div class="menu w-3/10 flex h-full flex-col bg-red-100">
+			<Palette on:color={updateColor} />
 
-<button on:click={sendImageToServer}>画像を送信</button>
+			<div class="happyou mt-auto flex h-10 w-full bg-red-500">
+				<button on:click={sendImageToServer} class="mx-auto block text-white">発表する</button>
+			</div>
+		</div>
+	</div>
+</section>
 
 <style>
 	canvas {
 		border: 1px solid #000;
 		cursor: crosshair;
+		width: 100%;
+		height: 100%;
+		display: block;
 	}
 </style>
