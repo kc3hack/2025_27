@@ -9,3 +9,7 @@
 <ParaglideJS {i18n}>
 	<div class="main">{@render children()}</div>
 </ParaglideJS>
+
+
+
+
