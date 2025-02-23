@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	let sponcerAudio;
+	let answerSelectAvatar = localStorage.getItem('answerSelectAvatar') || '';
+	let answerNickname = localStorage.getItem('answerNickname') || '';
 
 	if (browser) {
 		sponcerAudio = new Audio('/sponcer.wav');
@@ -21,7 +23,7 @@
 	>
 		<img
 			class="h-100 w-100 absolute rounded-full"
-			src="https://flowbite.com/docs/images/people/profile-picture-1.jpg"
+			src={answerSelectAvatar}
 			alt=""
 			style="top: 50%; left: 50%; transform: translate(-50%, -50%);"
 		/>
@@ -29,7 +31,7 @@
 			class="absolute rounded-lg bg-yellow-400 px-6 py-2 text-6xl font-bold text-black shadow-lg"
 			style="top: 90%; left: 50%; transform: translate(-50%, -50%);"
 		>
-			プレイヤー名
+			{answerNickname}
 		</div>
 		<img src="/images/champion_background.png" class="mx-auto" />
 	</div>

@@ -86,7 +86,14 @@
 
 	async function sendImageToServer() {
 		const imageData = canvas.toDataURL('image/png');
-		const payload = { image: imageData, lobby_id: lobbyId };
+		nickname = localStorage.getItem('nickname') || '';
+		selectAvatar = localStorage.getItem('selectAvatar') || '';
+		const payload = {
+			image: imageData,
+			lobby_id: lobbyId,
+			nickname: nickname,
+			select_avatar: selectAvatar
+		};
 
 		const response = await fetch(`${BACKEND_URL}/game_answer`, {
 			method: 'POST',

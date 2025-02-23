@@ -14,7 +14,9 @@ class GameAnswerController < ApplicationController
       type: "text",
       data: {
         command: "receive_image",
-        image: image_data
+        image: image_data,
+        answer_nickname: params[:nickname],
+        answer_select_avatar: params[:select_avatar]
       }
     })
 

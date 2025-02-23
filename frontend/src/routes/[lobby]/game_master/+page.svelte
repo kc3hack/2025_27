@@ -174,6 +174,9 @@
 					} else if (message.data.command === 'receive_image') {
 						console.log('receive_image');
 						mode = 'answer';
+						console.log('message.data: ', message.data);
+						localStorage.setItem('answerNickname', message.data.answer_nickname);
+						localStorage.setItem('answerSelectAvatar', message.data.answer_select_avatar);
 						img.src = message.data.image;
 					} else if (message.data.command === 'set_theme') {
 						console.log('set_theme: ', message.data.theme);
