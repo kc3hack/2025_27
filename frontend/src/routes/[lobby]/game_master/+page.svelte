@@ -195,10 +195,10 @@
 </script>
 
 <section class="theme-box md:h-150 h-200">
-	<div class="mx-10 mt-10 h-fit bg-blue-100 py-10">
+	<div class="mx-10 mt-10 h-fit bg-yellow-100 px-10 py-10">
 		{#if mode === 'theme'}
 			<textarea
-				class="theme-box h-100 w-full bg-blue-500 text-center text-7xl"
+				class="theme-box h-100 w-full bg-yellow-500 text-center text-7xl"
 				placeholder="お題を入力"
 				bind:value={theme}
 				on:input={sendTheme}
@@ -229,10 +229,10 @@
 	</div>
 </section>
 
-<section class="mx-10 bg-blue-200 py-10">
-	<div class="mx-10 bg-blue-300 px-10">
-		<div class="hyouka bg-blue-600">
-			<div class="flex h-40 justify-end bg-amber-200 py-3 text-black">
+<section class="mx-10 bg-yellow-200 py-10">
+	<div class=" px-10">
+		<div class="hyouka bg-yellow-600">
+			<div class="flex h-40 justify-end bg-amber-300 py-3 text-black">
 				<textarea
 					class="heme-box mx-4 w-full text-2xl"
 					placeholder="お題を入力"
