@@ -2,6 +2,6 @@
 
 </script>
 
-<header class="header w-full">
-    <div class="flex justify-center"><h1 class="text-5xl">WARA1</h1></div>
+<header class="bg-amber-[400] header w-full flex justify-center">
+    <img src="/images/logoWARA1.png" alt="WARA1ロゴ">
 </header>
