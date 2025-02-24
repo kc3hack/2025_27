@@ -17,7 +17,7 @@ K.A.N.S.A.I から、やはり関西は世界の笑いの中心地というこ�
 
 ## 操作説明・デモ動画
 
-[デモ動画はこちら](https://www.youtube.com/watch?v=fbzGp0XJGq8)
+[デモ動画はこちら](https://youtu.be/A2XzHMFBNrE)
 
 - 要 discord
 - マスターは discord で画面共有をする
